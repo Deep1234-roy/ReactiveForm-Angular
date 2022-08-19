@@ -1,0 +1,62 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create New Record</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="empForm" (ngSubmit)="saveEmployee()">
+        <div class="mb-3">
+            <label for="code">ID</label>
+            <div class="input-group">
+              <input id="code" class="form-control" formControlName="code">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <div class="input-group">
+              <input id="name" class="form-control" formControlName="name">
+            </div>
+            <span class="errorMsg" *ngIf="name && name.invalid"></span>
+            
+        </div>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <div class="input-group">
+              <input id="email" class="form-control" formControlName="email">
+            </div>
+            <span class="errorMsg" *ngIf="email && email.invalid"></span>
+            
+        </div>
+        <div class="mb-3">
+            <label for="phone">Phone</label>
+            <div class="input-group">
+              <input id="phone" class="form-control" formControlName="phone">
+            </div>
+            
+        </div>
+        <div class="mb-3">
+            <label for="designation">Designation</label>
+            <div class="input-group">
+              <select class="form-control" formControlName="designation">
+                <option>Engineering</option>
+                <option>HR</option>
+                <option>Admin</option>
+                <option>Finance</option>
+              </select>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"  [disabled]="empForm.invalid" >Save</button>
+          </div>
+          <span [ngClass]="errorClass">{{errorMsg}}</span>
+      </form>
+    </div>
+    
+  </ng-template>
+  
+  <button ngbTooltip="Create New Record" class="btn btn-primary" (click)="open(content)">Add New</button>
+  
+  <hr>
+  
+  <pre>{{ closeResult }}</pre>
